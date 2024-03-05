@@ -2,7 +2,7 @@
 
 client_id = "1b270085d038e59fe59ee558fe4dbae6"
 name = "remix-app"
-application_url = "https://helping-show-come-office.trycloudflare.com"
+application_url = "https://croatia-italian-scanned-vcr.trycloudflare.com"
 embedded = true
 
 [build]
@@ -12,13 +12,13 @@ include_config_on_deploy = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_inventory,read_products,write_discounts,write_products"
+scopes = "read_inventory,read_products,write_customers,write_discounts,write_products"
 
 [auth]
 redirect_urls = [
-  "https://helping-show-come-office.trycloudflare.com/auth/callback",
-  "https://helping-show-come-office.trycloudflare.com/auth/shopify/callback",
-  "https://helping-show-come-office.trycloudflare.com/api/auth/callback"
+  "https://croatia-italian-scanned-vcr.trycloudflare.com/auth/callback",
+  "https://croatia-italian-scanned-vcr.trycloudflare.com/auth/shopify/callback",
+  "https://croatia-italian-scanned-vcr.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

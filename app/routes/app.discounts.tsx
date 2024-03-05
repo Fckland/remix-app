@@ -1,10 +1,16 @@
 import { json, type ActionFunction } from "@remix-run/node";
 import { Form, useActionData, useSubmit } from "@remix-run/react";
-import { Button, Card, Page } from "@shopify/polaris";
+import { Button, Card, Page, TextField } from "@shopify/polaris";
+import { useState } from "react";
 import { authenticate } from "~/shopify.server";
 
 export const action: ActionFunction = async ({ request }) => {
   const { admin } = await authenticate.admin(request);
+
+  const formData = await request.formData();
+
+  const discountTitle = formData.get('discountTitlee')
+  console.log(discountTitle)
 
   try {
     const startsAt = "2024-03-01T00:00:00Z";
@@ -58,8 +64,8 @@ export const action: ActionFunction = async ({ request }) => {
       {
         variables: {
           basicCodeDiscount: {
-            title: "100 off all items during the summer of 2022",
-            code: "SUMMER100",
+            title: discountTitle,
+            code: "SUMMER1000",
             startsAt: startsAt,
             endsAt: endsAt,
             minimumRequirement: {
@@ -101,6 +107,9 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 const Discounts = () => {
+
+  const [discountTitlee, setDiscountTitlee] = useState('')
+
   const submit = useSubmit();
   const actionData = useActionData();
   console.log("actionData: ", actionData);
@@ -111,6 +120,14 @@ const Discounts = () => {
     <Page>
       <Card>
         <Form onSubmit={generateDiscount} method="post">
+          <TextField
+            label="title"
+            name="discountTitlee"
+            id="discountTitlee"
+            autoComplete="off"
+            value={discountTitlee}
+            onChange={(value) => setDiscountTitlee(value)}
+          ></TextField>
           <Button submit>Create Discount</Button>
         </Form>
       </Card>
